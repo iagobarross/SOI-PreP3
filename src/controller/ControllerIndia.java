@@ -56,18 +56,18 @@ public class ControllerIndia {
 		int population = 0;
 		boolean found = false;
 
-		while (linha != null) {
-			linha.trim();
-			String[] vetLinha = linha.split(":");
-			if (vetLinha[0].contains("date") && vetLinha[1].contains(Integer.toString(ano))) {
-				linha = buffer.readLine();
-				String[] vetLinha2 = linha.split(":");
+		linha.trim();
+		String[] vetLinha = linha.split(",");
+		int tamanho = vetLinha.length;
+		for (int i = 0; i < tamanho; i++) {
+			if (vetLinha[i].contains("date") && vetLinha[i].contains(Integer.toString(ano))) {
+				String linhaAux = vetLinha[i + 1];
+				String[] vetLinha2 = linhaAux.split(":");
 				String pop = vetLinha2[1].trim().replaceAll(",", "").replaceAll("}", "");
 				population = Integer.parseInt(pop);
 				found = true;
 				break;
 			}
-			linha = buffer.readLine();
 		}
 
 		buffer.close();
@@ -80,4 +80,5 @@ public class ControllerIndia {
 
 		return population;
 	}
+
 }

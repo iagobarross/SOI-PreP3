@@ -15,7 +15,7 @@ public class Principal {
 
 			String input = JOptionPane.showInputDialog(null,
 					"               Menu Principal\n\n1- Buscar população indiana\n2- Finalizar");
-			
+
 			if (input == null) {
 				JOptionPane.showMessageDialog(null, "Finalizando...");
 				System.exit(0);
@@ -35,7 +35,7 @@ public class Principal {
 			case 1:
 				try {
 					ano = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ano para busca:",
-						"População anual da Índia", JOptionPane.QUESTION_MESSAGE));
+							"População anual da Índia", JOptionPane.QUESTION_MESSAGE));
 
 					contIndia.searchPop(ano);
 				} catch (Exception e) {
