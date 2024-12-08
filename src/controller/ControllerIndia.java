@@ -28,23 +28,26 @@ public class ControllerIndia {
 		boolean found = false;
 
 		if (os.contains("Windows")) {
-			population = searchWin(ano);
+			String path = "C:/Temp";
+			population = search(ano, path);
 			found = true;
 		}
 
 		if (os.contains("Linux")) {
-			population = searchLinux(ano);
+			String path = "/tmp";
+			population = search(ano, path);
 			found = true;
 		}
-		
-		if(found) {
-			JOptionPane.showMessageDialog(null, "A população indiana em " + ano + " era de " + population + " pessoas", "População Indiana", JOptionPane.INFORMATION_MESSAGE);
+
+		if (found) {
+			JOptionPane.showMessageDialog(null, "A população indiana em " + ano + " era de " + population + " pessoas",
+					"População Indiana", JOptionPane.INFORMATION_MESSAGE);
 		}
-		
+
 	}
 
-	private int searchWin(int ano) throws Exception {
-		String path = "C:/Temp";
+	private int search(int ano, String path) throws Exception {
+
 		File arq = new File(path, "pop.json");
 		FileInputStream fis = new FileInputStream(arq);
 		InputStreamReader isr = new InputStreamReader(fis);
@@ -70,47 +73,11 @@ public class ControllerIndia {
 		buffer.close();
 		isr.close();
 		fis.close();
-		
-		if(!found) {
-			throw new Exception("Ano inválido");
+
+		if (!found) {
+			throw new Exception();
 		}
 
 		return population;
 	}
-
-	private int searchLinux(int ano) throws Exception {
-		String path = "/tmp";
-		File arq = new File(path, "pop.json");
-		FileInputStream fis = new FileInputStream(arq);
-		InputStreamReader isr = new InputStreamReader(fis);
-		BufferedReader buffer = new BufferedReader(isr);
-		String linha = buffer.readLine();
-		int population = 0;
-		boolean found = false;
-
-		while (linha != null) {
-			linha.trim();
-			String[] vetLinha = linha.split(":");
-			if (vetLinha[0].contains("date") && vetLinha[1].contains(Integer.toString(ano))) {
-				linha = buffer.readLine();
-				String[] vetLinha2 = linha.split(":");
-				String pop = vetLinha2[1].trim().replaceAll(",", "").replaceAll("}", "");
-				population = Integer.parseInt(pop);
-				found = true;
-				break;
-			}
-			linha = buffer.readLine();
-		}
-
-		buffer.close();
-		isr.close();
-		fis.close();
-		
-		if(!found) {
-			throw new Exception("Ano inválido");
-		}
-
-		return population;
-	}
-
 }
