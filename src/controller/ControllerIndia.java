@@ -3,7 +3,7 @@
  *  Gravar em um arquivo chamado pop.json na pasta C:\TEMP (\tmp se for Linux) e fazer uma aplicacao java que, na classe 
  *  principal, no metodo Main peca ao usuario uma data, chame uma classe de controle que leia o arquivo, e, apresente o value
  *  com a população. (Caso nao exista, lancar uma excecao). Obs.: Não são permitidos usos de Bibliotecas, Frameworks e APIs,
- *  apenas operações de arquivos trabalhadas em aula.package controller;
+ *  apenas operações de arquivos trabalhadas em aula.
  */
 
 package controller;
